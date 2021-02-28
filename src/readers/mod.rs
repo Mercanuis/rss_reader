@@ -7,9 +7,9 @@ pub use csv_reader::CsvReader;
 pub use rss_reader::RssReader;
 
 pub trait Reader {
-    fn trim(&mut self);
+    fn trim(self);
 
-    fn replace(&mut self, from: &str, to: &str);
+    fn replace(self, from: &str, to: &str);
 
     fn display(&mut self) -> String;
 }

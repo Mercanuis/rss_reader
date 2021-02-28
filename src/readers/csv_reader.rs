@@ -31,8 +31,8 @@ impl CsvReader {
 }
 
 impl Reader for CsvReader {
-    fn trim(&mut self) {
-        for row in &self.values {
+    fn trim(self) {
+        for mut row in self.values {
             for (_i, e) in row.iter_mut().enumerate() {
                 if e.len().ge(&MAX_LENGTH) {
                     *e = e[..MAX_LENGTH].to_string();
@@ -41,8 +41,8 @@ impl Reader for CsvReader {
         }
     }
 
-    fn replace(&mut self, from: &str, to: &str) {
-        for row in &self.values {
+    fn replace(self, from: &str, to: &str) {
+        for mut row in self.values {
             for (_i, e) in row.iter_mut().enumerate() {
                 *e = e.replace(from, to);
             }
