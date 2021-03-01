@@ -44,7 +44,7 @@ impl Display for RssReader {
 }
 
 impl Reader for RssReader {
-    fn trim(mut self) {
+    fn trim(&mut self) {
         if self.title.len().ge(&MAX_LENGTH) {
             let s = &self.title.clone()[..MAX_LENGTH];
             self.title = s.to_string();
@@ -56,7 +56,7 @@ impl Reader for RssReader {
         }
     }
 
-    fn replace(mut self, from: &str, to: &str) {
+    fn replace(&mut self, from: &str, to: &str) {
         self.title = self.title.replace(from, to);
         self.description = self.description.replace(from, to);
     }

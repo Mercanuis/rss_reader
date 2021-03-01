@@ -31,20 +31,20 @@ impl CsvReader {
 }
 
 impl Reader for CsvReader {
-    fn trim(self) {
-        for mut row in self.values {
-            for (_i, e) in row.iter_mut().enumerate() {
-                if e.len().ge(&MAX_LENGTH) {
-                    *e = e[..MAX_LENGTH].to_string();
+    fn trim(&mut self) {
+        for row in &mut self.values {
+            for d in row {
+                if d.len().ge(&MAX_LENGTH) {
+                    d.truncate(MAX_LENGTH);
                 }
             }
         }
     }
 
-    fn replace(self, from: &str, to: &str) {
-        for mut row in self.values {
-            for (_i, e) in row.iter_mut().enumerate() {
-                *e = e.replace(from, to);
+    fn replace(&mut self, from: &str, to: &str) {
+        for row in &mut self.values {
+            for mut d in row {
+                d = &mut d.replace(from, to);
             }
         }
     }

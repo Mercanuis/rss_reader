@@ -1,15 +1,15 @@
+pub use csv_reader::CsvReader;
+pub use rss_reader::RssReader;
+
 mod csv_reader;
 mod rss_reader;
 
 const MAX_LENGTH: usize = 10;
 
-pub use csv_reader::CsvReader;
-pub use rss_reader::RssReader;
-
 pub trait Reader {
-    fn trim(self);
+    fn trim(&mut self);
 
-    fn replace(self, from: &str, to: &str);
+    fn replace(&mut self, from: &str, to: &str);
 
     fn display(&mut self) -> String;
 }
