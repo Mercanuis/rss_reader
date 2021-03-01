@@ -49,8 +49,8 @@ impl Reader for CsvReader {
 
     fn replace(&mut self, from: &str, to: &str) {
         for row in &mut self.values {
-            for mut d in row {
-                d = &mut d.replace(from, to);
+            for d in row {
+                *d = (*d.replace(from, to)).parse().unwrap();
             }
         }
     }
