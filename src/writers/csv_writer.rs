@@ -14,6 +14,11 @@ pub struct CsvWriter {
 }
 
 impl CsvWriter {
+    /// Create a new `CsvWriter`
+    ///
+    /// # Arguments
+    /// * `file_name` - `String` of the file name or path
+    /// * `reader` - `Box` containing the `Reader` with provided input
     pub fn new(file_name: String, reader: Box<dyn Reader>) -> Self {
         Self { file_name, reader }
     }
