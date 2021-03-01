@@ -4,11 +4,17 @@ use crate::readers::Reader;
 
 use super::MAX_LENGTH;
 
+///Represents a CSV file reader
 pub struct CsvReader {
+    ///Describes the rows and values taken from the CSV file
     values: Vec<Vec<String>>,
 }
 
 impl CsvReader {
+    /// Create a new `CsvReader`
+    ///
+    /// # Arguments
+    /// * `file_name` - `String` of the CSV file
     pub fn new(file_name: String) -> Self {
         let mut rdr = csv::Reader::from_path(file_name.clone()).unwrap();
         let mut records = Vec::new();

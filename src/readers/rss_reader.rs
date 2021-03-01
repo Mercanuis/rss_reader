@@ -8,12 +8,19 @@ use rss::Channel;
 use super::Reader;
 use super::MAX_LENGTH;
 
+///Represents a Reader for an RSS feed
 pub struct RssReader {
+    ///the title of the RSS feed
     title: String,
+    ///the description of the RSS feed
     description: String,
 }
 
 impl RssReader {
+    ///Creates a new `RssReader`
+    ///
+    /// # Arguments
+    /// * `url` - `String` of the URL for the RSS feed
     pub fn new(url: String) -> Self {
         get_rss(url)
             .map(|c| RssReader {
@@ -46,13 +53,11 @@ impl Display for RssReader {
 impl Reader for RssReader {
     fn trim(&mut self) {
         if self.title.len().ge(&MAX_LENGTH) {
-            let s = &self.title.clone()[..MAX_LENGTH];
-            self.title = s.to_string();
+            self.title.truncate(MAX_LENGTH);
         }
 
         if self.description.len().ge(&MAX_LENGTH) {
-            let s = &self.description.clone()[..MAX_LENGTH];
-            self.description = s.to_string()
+            self.description.truncate(MAX_LENGTH);
         }
     }
 

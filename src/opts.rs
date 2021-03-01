@@ -7,8 +7,10 @@ const URL: &str = "url";
 const REPLACE: &str = "replace";
 const TRIM: &str = "trim";
 
+/// Represents System Arguments
 #[derive(Debug)]
 pub struct Args {
+    ///List of `ArgMatches` found from the command line
     matches: ArgMatches,
 }
 
